@@ -1,5 +1,0 @@
-2025-01-26 23:44:10,350 - INFO - Loaded Features: ['no_of_dependents', 'education', 'self_employed', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score', 'residential_assets_value', 'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value', 'debt_to_income_ratio', 'asset_to_loan_ratio', 'asset_to_income_ratio']
-2025-01-26 23:44:10,379 - WARNING -  * Debugger is active!
-2025-01-26 23:44:10,384 - INFO -  * Debugger PIN: 110-048-995
-2025-01-26 23:45:32,836 - INFO -  * Detected change in 'C:\\Users\\NAVYA\\OneDrive\\Desktop\\projects\\loan approval\\app.py', reloading
-2025-01-26 23:45:32,836 - INFO -  * Detected change in 'C:\\Users\\NAVYA\\OneDrive\\Desktop\\projects\\loan approval\\app.py', reloading
