@@ -61,7 +61,7 @@ loan-approval-system/
 ├── app.py                     # Main application file for running the backend
 ├── loan_data9.py              # Script for data preprocessing and ML model training
 ├── templates/                 # Templates for rendering HTML pages
-│   ├── index.html             # Landing page for the loan prediction system
+│   
 │   ├── loan_prediction.html   # Loan prediction form
 │   ├── emi.html               # EMI Calculator interface
 │   └── visualizations.html    # Visualization dashboard
@@ -76,7 +76,7 @@ loan-approval-system/
 ├── feature_names.pkl          # Feature names used in the model
 ├── label_encoders.pkl         # Label encoders for categorical variables
 ├── README.md                  # Project documentation
-
+├── index.html
 
 ```
 
