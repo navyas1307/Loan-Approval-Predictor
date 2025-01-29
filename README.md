@@ -75,7 +75,6 @@ loan-approval-system/
 ├── scaler.pkl                 # Scaler object for data normalization
 ├── feature_names.pkl          # Feature names used in the model
 ├── label_encoders.pkl         # Label encoders for categorical variables
-├── requirements.txt           # Python dependencies
 ├── README.md                  # Project documentation
 
 
