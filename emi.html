@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">EMI Calculator</h1>
+        
+        <!-- EMI Form -->
+        <form id="emi-form" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <label for="loan_type" class="block text-lg font-medium">Select Loan Type:</label>
+            <select id="loan_type" class="w-full p-2 mb-4 border border-gray-300 rounded-lg">
+                <option value="home">Home Loan</option>
+                <option value="car">Car Loan</option>
+                <option value="personal">Personal Loan</option>
+                <option value="education">Education Loan</option>
+            </select>
+
+            <label for="loan_amount" class="block text-lg font-medium">Loan Amount (₹):</label>
+            <input type="number" id="loan_amount" class="w-full p-2 mb-4 border border-gray-300 rounded-lg" required>
+
+            <label for="interest_rate" class="block text-lg font-medium">Interest Rate (Annual %):</label>
+            <input type="number" id="interest_rate" class="w-full p-2 mb-4 border border-gray-300 rounded-lg" readonly required>
+
+            <label for="loan_term" class="block text-lg font-medium">Loan Term (in years):</label>
+            <input type="number" id="loan_term" class="w-full p-2 mb-4 border border-gray-300 rounded-lg" required>
+
+            <button type="submit" class="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Calculate EMI</button>
+        </form>
+
+        <!-- EMI Result -->
+        <div id="emi-result" class="mt-8 p-4 bg-gray-50 border rounded-lg hidden">
+            <h2 class="text-xl font-bold">Your Monthly EMI: ₹<span id="emi-amount">0</span></h2>
+        </div>
+    </div>
+
+    <script>
+        // Predefined Rate of Interest (ROI) for different loan types
+        const roiData = {
+            home: 9.4,    // Home Loan - 7.5% per annum
+            car: 9.8,     // Car Loan - 9.0% per annum
+            personal: 12.4, // Personal Loan - 12% per annum
+            education: 9.2  // Education Loan - 8.0% per annum
+        };
+
+        // EMI Calculation function
+        function calculateEMI(loanAmount, interestRate, loanTerm) {
+            const principal = loanAmount;
+            const interestRateMonthly = interestRate / 12 / 100; // Monthly interest rate
+            const totalMonths = loanTerm * 12; // Loan term in months
+
+            // EMI formula
+            const emi = (principal * interestRateMonthly * Math.pow(1 + interestRateMonthly, totalMonths)) / (Math.pow(1 + interestRateMonthly, totalMonths) - 1);
+            return emi.toFixed(2);
+        }
+
+        // Handle form submission
+        document.getElementById('emi-form').addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from refreshing the page
+
+            // Get values from the form
+            const loanType = document.getElementById('loan_type').value;
+            const loanAmount = parseFloat(document.getElementById('loan_amount').value);
+            const loanTerm = parseInt(document.getElementById('loan_term').value);
+
+            // Get the ROI based on the selected loan type
+            const interestRate = roiData[loanType];
+
+            // Set the ROI input value to the selected loan's rate
+            document.getElementById('interest_rate').value = interestRate;
+
+            // Validate inputs
+            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid values for all fields.');
+                return;
+            }
+
+            // Calculate EMI
+            const emiAmount = calculateEMI(loanAmount, interestRate, loanTerm);
+
+            // Display result
+            document.getElementById('emi-amount').textContent = emiAmount;
+            document.getElementById('emi-result').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
