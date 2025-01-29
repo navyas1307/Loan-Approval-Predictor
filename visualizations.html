@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Data Visualizations</title>
+    <style>
+        :root {
+            --primary-blue: #2196F3;
+            --light-blue: #64B5F6;
+            --dark-blue: #1976D2;
+            --background-blue: #E3F2FD;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 1.6em;
+        }
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .intro {
+            font-size: 1em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .feature-description {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-description img {
+            width: 25px;
+            height: 25px;
+        }
+        .graph-container {
+            margin-bottom: 30px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(33, 150, 243, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: var(--dark-blue);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .description {
+            color: #555;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔍 Loan Data Insights</h1>
+        <p>Explore interactive visualizations that offer valuable insights into loan approval trends.</p>
+    </header>
+    
+    <div class="content">
+        <p class="intro">This page displays the factors that are taken into consideration when calculating loan approval decisions.</p>
+        
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/debt.png" alt="CIBIL Score Icon">
+            <p><strong>CIBIL Score:</strong> A credit score that evaluates an individual's creditworthiness, influencing loan approval decisions.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/income.png" alt="Income Level Icon">
+            <p><strong>Income Level:</strong> The applicant's income is a key factor in determining the loan amount they can repay.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/money-bag.png" alt="Loan Amount Icon">
+            <p><strong>Loan Amount:</strong> The total loan amount requested by the applicant, affecting approval chances based on income and credit score.</p>
+        </div>
+        
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/debt.png" alt="Debt-to-Income Ratio Icon">
+            <p><strong>Debt-to-Income Ratio:</strong> This ratio shows the applicant's ability to repay the loan in comparison to their existing debts.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/education.png" alt="Education Level Icon">
+            <p><strong>Education Level:</strong> Higher education levels may suggest better employment opportunities and increased repayment capacity.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/family.png" alt="Marital Status Icon">
+            <p><strong>Marital Status:</strong> Whether an applicant is single, married, or divorced, as it can reflect financial stability or risk.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/family.png" alt="Dependents Icon">
+            <p><strong>Dependents:</strong> The number of people the applicant is financially responsible for, affecting disposable income and repayment ability.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/worker-male.png" alt="Self-Employed Icon">
+            <p><strong>Self-Employed:</strong> Indicates whether the applicant is self-employed or salaried. Self-employment may be considered higher risk.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/clock.png" alt="Loan Term Icon">
+            <p><strong>Loan Term:</strong> The duration for which the loan is taken, affecting the loan’s repayment amount and applicant’s eligibility.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/income.png" alt="Luxury Asset Icon">
+            <p><strong>Luxury Asset:</strong> Refers to assets of high value, such as luxury cars or properties, which may influence loan eligibility based on collateral.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/home.png" alt="Residential Asset Icon">
+            <p><strong>Residential Asset:</strong> Residential properties are common forms of collateral in loan applications and affect loan approval decisions.</p>
+        </div>
+        <div class="feature-description">
+            <img src="https://img.icons8.com/ios/50/000000/commercial.png" alt="Commercial Asset Icon">
+            <p><strong>Commercial Asset:</strong> Properties or assets used for business purposes, which may help secure larger loans depending on their value.</p>
+        </div>
+
+        <div class="graph-container">
+            <h2>Feature Correlation Heatmap</h2>
+            <p class="description">
+                This heatmap shows the relationships between different loan application features.
+                Darker shades indicate stronger correlations between variables.
+            </p>
+            <iframe src="/static/heatmap.html"></iframe>
+        </div>
+
+        <div class="graph-container">
+            <h2>Feature Importance</h2>
+            <p class="description">
+                This chart highlights the most significant factors influencing loan approval decisions.
+            </p>
+            <iframe src="/static/feature_importance.html"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Loan Approval Analysis. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
