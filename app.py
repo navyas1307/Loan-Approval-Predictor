@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import joblib
 from lime.lime_tabular import LimeTabularExplainer
+import os
 
 app = Flask(__name__)
 
@@ -102,6 +103,45 @@ def predict_with_feature_importance():
 
     except Exception as e:
         return jsonify({"message": f"Error: {str(e)}"}), 500
+    
+    
+import joblib
+
+
+
+
+
+@app.route("/feature_importance")
+def feature_importance():
+    importance_scores = model.feature_importances_
+    return jsonify(dict(zip(feature_names, importance_scores)))
+
+
+
+
+@app.route("/feature_correlations")
+def feature_correlations():
+    file_path = os.path.join(os.getcwd(), "loan_approval_dataset.csv")
+    df = pd.read_csv(file_path)
+
+    
+    # Compute correlation matrix
+    correlation_matrix = df.corr().fillna(0).round(2)
+
+    # Convert to heatmap-compatible format
+    labels = correlation_matrix.columns.tolist()
+    correlation_data = []
+    
+    for i in range(len(labels)):
+        for j in range(len(labels)):
+            correlation_data.append({
+                "x": j,  # Column index
+                "y": i,  # Row index
+                "value": correlation_matrix.iloc[i, j]  # Correlation value
+            })
+
+    return jsonify({"labels": labels, "data": correlation_data})
+
 
 if __name__ == "__main__":
     app.run(debug=False)
