@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #E3F2FD;
+            margin: 0;
+            padding: 10px;
+        }
+        h1 {
+            color: #0D47A1;
+            margin-bottom: 10px;
+        }
+        .chart-container {
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;
+            height: 400px;
+        }
+        canvas {
+            background: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div class="chart-container">
+        <canvas id="featureChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('featureChart').getContext('2d');
+        const featureChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Feature Importance Score',
+                    data: [],
+                    backgroundColor: 'rgba(33, 150, 243, 0.8)',
+                    borderColor: 'rgba(13, 71, 161, 0.8)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#0D47A1',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Features',
+                            color: '#0D47A1',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#0D47A1',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Importance Score',
+                            color: '#0D47A1',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#0D47A1',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `Score: ${tooltipItem.raw.toFixed(2)}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Fetch data from the backend API
+        fetch('/feature_importance')
+            .then(response => response.json())
+            .then(data => {
+                const labels = Object.keys(data);
+                const values = Object.values(data);
+
+                // Update chart data
+                featureChart.data.labels = labels;
+                featureChart.data.datasets[0].data = values;
+                featureChart.update();
+            })
+            .catch(error => console.error('Error fetching feature importance:', error));
+    </script>
+</body>
+</html>
