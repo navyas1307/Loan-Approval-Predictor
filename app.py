@@ -8,9 +8,12 @@ import os
 app = Flask(__name__)
 
 # Load the trained model, scaler, and feature names
-model = joblib.load("best_rf_model.pkl")
-scaler = joblib.load("scaler.pkl")
-feature_names = joblib.load("feature_names.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "best_rf_model.pkl")
+model_path2 = os.path.join(os.path.dirname(__file__), "scaler.pkl")
+model_path3 = os.path.join(os.path.dirname(__file__), "feature_names.pkl")
+model = joblib.load(model_path)
+scaler = joblib.load(model_path2)
+feature_names = joblib.load(model_path3)
 
 @app.route("/")
 def index():
